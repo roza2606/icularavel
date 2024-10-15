@@ -13,6 +13,57 @@ Route::get('/home', function () {
 Route::get('/auth/signin', function () {
     return view('auth.signin');
 });
+// // param route - for multi param
+// Route::get('/user/{name}/{age}', function ($name, $age) {
+//     return 'User ->'.$name. 'Age Is '.$age;
+// });
+
+// param route
+Route::get('/home/{name}', function ($name) {
+    return view('home',['name' => $name]);
+});
+
+//named route
+Route::get('/user/profile', function () {
+    return 'Pengguna Profiles Baru';
+})->name('user.profile');
+
+// param route
+Route::get('/user/{name}', function ($name) {
+    return 'User ->'.$name;
+});
+
+//named route - alias of a route.profile
+Route::get('/redirect-to-profile', function () {
+    return redirect()->route('user.profile');
+});
+
+// route group
+Route::prefix('food')->group(function () {
+
+    Route::get('/details', function () {
+        return 'Food details are following';
+    });
+
+    Route::get('/home', function () {
+        return 'Food home page';
+    });
+    
+});
+
+// route group - combination  of all 
+Route::name('job')->prefix('job')->group(function () {
+
+    Route::get('home', function () {
+        return 'Job home page';
+    })->name('.home');
+
+    Route::get('details', function () {
+        return 'Job details are following';
+    })->name('.description');
+});
+
+
 
 
 
