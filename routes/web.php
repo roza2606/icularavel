@@ -17,6 +17,11 @@ Route::get('/about', function () {
 Route::get('/auth/signin', function () {
     return view('auth.signin');
 });
+
+Route::get('/feeds', function () {
+    return view('pages.feed.index');
+});
+
 // // param route - for multi param
 // Route::get('/user/{name}/{age}', function ($name, $age) {
 //     return 'User ->'.$name. 'Age Is '.$age;
@@ -66,6 +71,8 @@ Route::name('job')->prefix('job')->group(function () {
         return 'Job details are following';
     })->name('.description');
 });
+
+require __DIR__.'/feed/web.php';
 
 
 
