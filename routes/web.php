@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,9 +15,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/auth/signin', function () {
-    return view('auth.signin');
-});
+// Route::get('/auth/signin', function () {
+//     return view('pages.auth.signin');
+// });
 
 Route::get('/feeds', function () {
     return view('pages.feed.index');
@@ -71,6 +72,9 @@ Route::name('job')->prefix('job')->group(function () {
         return 'Job details are following';
     })->name('.description');
 });
+
+Route::get('/auth/signup', [AuthController::class, 'signUp'])->name('signup');
+Route::get('/auth/signin', [AuthController::class, 'signIn'])->name('signin');;
 
 require __DIR__.'/feed/web.php';
 
