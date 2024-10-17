@@ -12,6 +12,25 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('about') }}">About</a>
           </li>
+          {{-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ route('auth.signout') }}">Sign Out</a>
+          </li> --}}
+        </ul>
+
+          <ul class="navbar-nav ms-auto">
+            @auth
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ route('auth.signout') }}">Sign Out</a>
+            </li>
+            @endauth
+            @guest
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ route('auth.signin') }}">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ route('auth.signup') }}">Sign Up</a>
+            </li>
+            @endguest
         </ul>
       </div>
     </div>

@@ -5,9 +5,21 @@
 @section('content')
 
 <div class="container">
-    <form>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ui>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ui>
+
+    </div>
+    @endif
+
+    <form action="{{ route('auth.store') }}" method="POST">
+        @csrf
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <label for="exampleInputEmail1" class="form-label">Nama</label>
           <input type="text" class="form-control" id="name" name="name">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
